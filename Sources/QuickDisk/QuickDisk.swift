@@ -32,7 +32,7 @@ public struct QuickSaveToDocuments<Model: Codable> {
 @propertyWrapper
 struct StoreFile {
     
-    @StoreFolder(folderName: "QuickSave") var folder: Folder
+    @DocumentSubfolder(folderName: "QuickSave") var folder: Folder
     
     static var filename: String = "TempFile"
     
@@ -53,14 +53,17 @@ struct StoreFile {
     }
 }
 
-
+/// A subfolder within Documents Folder
+///
+///        @DocumentSubfolder(folderName: "QuickSave") var folder: Folder
+///
 @propertyWrapper
-struct StoreFolder {
+public struct DocumentSubfolder {
     let foldername: String
-    init(folderName: String) {
+    public init(folderName: String) {
         self.foldername = folderName
     }
-    var wrappedValue: Folder {
+    public var wrappedValue: Folder {
         get {
             if let folder = try? Folder.documents?.subfolder(named: foldername) {
                 return folder

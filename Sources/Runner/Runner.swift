@@ -1,5 +1,6 @@
 import Foundation
 import QuickDisk
+import Files
 
 @main struct Runner {
     static func main() {
@@ -12,6 +13,9 @@ struct Bee: Codable, Equatable {
 }
 
 struct TestQuickSave {
+    
+    @DocumentSubfolder(folderName: "QuickSave") var folder: Folder
+    
     func test() {
         let bee = Bee(name: "Anna")
         let filename = "BeeFile"
