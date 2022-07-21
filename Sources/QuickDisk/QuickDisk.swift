@@ -23,6 +23,12 @@ public struct QuickSaveToDocuments<Model: Codable> {
         let model = try decoder.decode(Model.self, from: data)
         return model
     }
+    public func loadString() throws -> String {
+        try file.readAsString()
+    }
+    public func loadData() throws -> Data {
+        try file.read()
+    }
     public func hardReset() throws {
         try file.delete()
     }
